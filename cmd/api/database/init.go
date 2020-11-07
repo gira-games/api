@@ -1,6 +1,10 @@
 package database
 
-import "github.com/pressly/goose"
+import (
+	"os"
+
+	"github.com/pressly/goose"
+)
 
 const (
 	upCommand = "up"
@@ -25,4 +29,12 @@ func InitFromDirectory(opts *DBOptions, sqlDirectory string) error {
 	}
 
 	return nil
+}
+
+func Directory() (string, error) {
+	path, err := os.Getwd()
+	if err != nil {
+		return "", err
+	}
+	return path, nil
 }
